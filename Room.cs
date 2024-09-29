@@ -6,7 +6,16 @@ using System.Threading.Tasks;
 
 namespace Hospital_MS
 {
-    internal class Room
+    public class Room
     {
+        public int RoomNumber {  get; set; }
+        public bool IsOccupied { get; set; }
+
+
+        public Room (int roomNumber)
+        {
+            RoomNumber = roomNumber;
+            IsOccupied = false;
+        }
     }
 }

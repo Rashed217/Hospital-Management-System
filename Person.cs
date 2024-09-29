@@ -6,8 +6,33 @@ using System.Threading.Tasks;
 
 namespace Hospital_MS
 {
-    internal class Person
+
+    public enum Gender
     {
+        Male,
+        Female,
+        Other
+    }
+
+    public class Person
+    {
+        public string Name {  get; set; }
+        public int Age { get; set; }
+        public Gender Gender {  get; set; }
+
+        public Person(string name, int age, Gender gender)
+        {
+            Name = name;
+            Age = age;
+            Gender = gender;
+        }
+
+        public virtual void DisplayInfo()
+        {
+            Console.WriteLine($"Name: {Name}, Age: {Age}, Gender: {Gender}");
+        }
+
 
     }
+
 }
