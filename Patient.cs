@@ -27,5 +27,25 @@ namespace Hospital_MS
             Console.WriteLine($"{Name} has been assigned to room {Room.RoomNumber}.");
         }
 
+        public void Discharge()
+        {
+            Room = null;
+            Console.WriteLine($"{Name} has been discharged");
+        }
+
+        public override void DisplayInfo()
+        {
+            base.DisplayInfo();
+            Console.WriteLine($"PatientID: {PatientID}, Ailment: {Ailment}, Assigned Doctor: {AssignedDoctor.Name}");
+            if (Room != null)
+            {
+                Console.WriteLine($"Room: {Room.RoomNumber}");
+            }
+
+            else
+            {
+                Console.WriteLine("Room: not assigned");
+            }
+        }
     }
 }
