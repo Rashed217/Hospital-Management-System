@@ -11,7 +11,7 @@ namespace Hospital_MS
         public int PatientID { get; set; }
         public string Ailment {  get; set; }
         public Doctor AssignedDoctor { get; set; }
-        public Room Room { get; set; }
+        public Room Room { get; private set; }
 
 
         public Patient(string name, int age, Gender gender, int patientId, string ailment, Doctor assignedDoctor) : base(name, age, gender)
@@ -19,6 +19,7 @@ namespace Hospital_MS
             PatientID = patientId;
             Ailment = ailment;
             AssignedDoctor = assignedDoctor;
+            assignedDoctor.AddPatient(this); // Automatically assign the patient to the doctor
         }
 
         public void AssignRoom(Room room)
