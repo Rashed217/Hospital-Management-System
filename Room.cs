@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Hospital_MS
 {
-    public enum RoomType
+    public enum RoomType // An enumeration that defines a set of named constants.
     {
         General,
         ICU,
@@ -15,9 +15,9 @@ namespace Hospital_MS
 
     public class Room
     {
-        public int RoomNumber {  get; set; }
-        public RoomType RoomType { get; set; }
-        public bool IsOccupied { get; set; }
+        public int RoomNumber {  get; set; } // Holds the unique identifier for the room
+        public RoomType RoomType { get; set; } // A property of type RoomType from enumeration
+        public bool IsOccupied { get; set; } // Indicates whether the room is currently occupied by a patient
 
 
         public Room (int roomNumber, RoomType roomType)
@@ -27,12 +27,12 @@ namespace Hospital_MS
             IsOccupied = false;
         }
 
-        public void OccupyRoom()
+        public void OccupyRoom() // Sets the room status to occupied
         {
             IsOccupied = true;
         }
 
-        public void VacateRoom()
+        public void VacateRoom() // Sets the room status to not occupied
         {
             IsOccupied = false;
         }
