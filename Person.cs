@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Hospital_MS
 {
 
-    public enum Gender
+    public enum Gender // A set of named constants (Enumerator List)
     {
         Male,
         Female,
@@ -16,6 +16,7 @@ namespace Hospital_MS
 
     public class Person
     {
+        // Person's Attributes
         public string Name {  get; set; }
         public int Age { get; set; }
         public Gender Gender {  get; set; }
@@ -27,6 +28,7 @@ namespace Hospital_MS
             Gender = gender;
         }
 
+        // Will be called to Display Info of Patients or Doctors.
         public virtual void DisplayInfo()
         {
             Console.WriteLine($"Name: {Name}, Age: {Age}, Gender: {Gender}");
