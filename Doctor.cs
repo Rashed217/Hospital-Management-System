@@ -14,7 +14,7 @@ namespace Hospital_MS
 
 
         // // Passing attributes from base class (Person), and adding new attributes
-        public Doctor(string name, int age, Gender gender, int doctorID, string specialization) : base(name, age, gender)
+        public Doctor(int doctorID, string name, int age, Gender gender, string specialization) : base(name, age, gender)
         {
             DoctorID = doctorID;
             Specialization = specialization;

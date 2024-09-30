@@ -14,7 +14,7 @@ namespace Hospital_MS
 
         public DateTime AppointmentDate { get; set; } // Holds the date and time of the appointment
 
-        public Appointment(Patient patient, Doctor doctor)
+        public Appointment(Patient patient, Doctor doctor, DateTime dateTime)
         {
             Patient = patient;
             Doctor = doctor;
