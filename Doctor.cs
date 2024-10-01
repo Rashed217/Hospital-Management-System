@@ -10,14 +10,30 @@ namespace Hospital_MS
     {
         public int DoctorID {  get; set; } // ID to identify the patients
         public string Specialization {  get; set; } // Specify the medical specialization of the doctor
+        public List<Clinic> AssignedClinics { get; set; } = new List<Clinic>();
         public List<Patient> PatientsList { get; private set; } = new List<Patient>(); // Holds the patients assigned to the doctor
 
 
         // // Passing attributes from base class (Person), and adding new attributes
-        public Doctor(int doctorID, string name, int age, Gender gender, string specialization) : base(name, age, gender)
+        public Doctor(int doctorID, string name, int age, Gender gender, string specialization, Clinic clinic) : base(name, age, gender)
         {
             DoctorID = doctorID;
             Specialization = specialization;
+        }
+
+        public void AssignToClinic(Clinic clinic, DateTime day, TimeSpan period)
+        {
+            AssignedClinics.Add(clinic);
+            clinic.AddAvailableAppointments(this, day, period);
+        }
+
+        public void DisplayAssignedClinics()
+        {
+            Console.WriteLine("Assigned Clinics:");
+            foreach (var clinic in AssignedClinics)
+            {
+                Console.WriteLine(clinic.ClinicName);
+            }
         }
 
         public void AddPatient(Patient patient) // Determines the Patient to be added
