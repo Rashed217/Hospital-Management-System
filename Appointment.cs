@@ -14,20 +14,21 @@ namespace Hospital_MS
 
         public DateTime AppointmentDate { get; set; } // Holds the date and time of the appointment
 
-        public Appointment(Patient patient, Doctor doctor, DateTime dateTime)
-        {
-            Patient = patient;
-            Doctor = doctor;
-        }
+        public TimeSpan AppointmentTime { get; set; }
 
-        public void ScheduleAppointment(DateTime date) // Sets the date and time for the appointment
+        public bool IsBooked { get; set; }
+
+
+        public void ScheduleAppointment(DateTime appointmentDate, TimeSpan appointmentTime) // Sets the date and time for the appointment
         {
-            AppointmentDate = date;
+            AppointmentDate = appointmentDate;
+            AppointmentTime = appointmentTime;
+            IsBooked = true;
         }
 
         public void CancelAppointment() // Cancel the appointment
         {
-            AppointmentDate = default(DateTime);
+            IsBooked = false;
         }
 
         public void GetAppointmentDetails() // Prints appointment's details

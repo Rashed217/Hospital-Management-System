@@ -10,7 +10,9 @@ namespace Hospital_MS
     {
         General,
         ICU,
-        OperationTheater
+        OperationTheater,
+        IRP, // In Patient Room
+        OPR  // Out Patient Room
     }
 
     public class Room
@@ -35,6 +37,11 @@ namespace Hospital_MS
         public void VacateRoom() // Sets the room status to not occupied
         {
             IsOccupied = false;
+        }
+
+        public void DisplayRoomInfo()
+        {
+            Console.WriteLine($"Room Number: {RoomNumber}, Is Occupied: {IsOccupied}, Type: {Type}");
         }
     }
 }
