@@ -13,7 +13,7 @@ namespace Hospital_MS
         public Doctor AssignedDoctor { get; set; }
         public DateTime AdmissionDate { get; set; }
 
-        public InPatient(int patientId, string name, int age, Gender gender, string ailment, Doctor assignedDoctor) : base(patientId, name, age, gender, ailment, assignedDoctor)
+        public InPatient(int patientId, string name, int age, Gender gender, string ailment, Doctor assignedDoctor, DateTime admissionDate) : base(patientId, name, age, gender, ailment, assignedDoctor)
         {
             AssignedDoctor = assignedDoctor;
             AdmissionDate = DateTime.Now;
@@ -35,7 +35,7 @@ namespace Hospital_MS
         public override void DisplayInfo()
         {
             base.DisplayInfo();
-            Console.WriteLine($"Room: {Room?.RoomNumber}, Assigned Doctor: {AssignedDoctor?.Name}");
+            Console.WriteLine($"Room: {Room.RoomNumber}, Assigned Doctor: {AssignedDoctor.Name}");
         }
     }
 }

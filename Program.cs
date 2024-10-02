@@ -4,51 +4,60 @@
     {
         static void Main(string[] args)
         {
-            // Test Case 1: Create doctors and patients 
-            Console.WriteLine("===== Test Case 1: Create Doctors and Patients =====");
-            Doctor doctor1 = new Doctor(1, "Dr. Smith", 45, Gender.Male, "Cardiology");
-            Doctor doctor2 = new Doctor(2, "Dr. Brown", 38, Gender.Female, "Neurology");
+            Doctor doctor1 = new Doctor(1, "Dr. John Smith", 45, Gender.Male, Specialization.Cardiology, Clinics.Cardiology);
+            Doctor doctor2 = new Doctor(2, "Dr. Alice Brown", 38, Gender.Female, Specialization.Neurology, Clinics.Neurology);
 
-            Patient patient1 = new Patient(101, "John Doe", 30, Gender.Male, "Heart Disease", doctor1);
-            Patient patient2 = new Patient(102, "Jane Roe", 28, Gender.Female, "Migraine", doctor2);
+            // Create clinics
+            Clinic cardiologyClinic = new Clinic(1, "Cardiology Clinic", Specialization.Cardiology);
+            Clinic neurologyClinic = new Clinic(2, "Neurology Clinic", Specialization.Neurology);
 
-            // Display information 
-            patient1.DisplayInfo();
-            patient2.DisplayInfo();
-            doctor1.DisplayInfo();
-            doctor2.DisplayInfo();
+            // Create rooms for clinics
+            Room room1 = new Room(101, RoomType.IPR);  // Room for in-patients
+            Room room2 = new Room(102, RoomType.OPR);  // Room for out-patients
 
-            // Test Case 2: Assign rooms to patients 
-            Console.WriteLine("\n===== Test Case 2: Room Assignment =====");
-            Room room1 = new Room(202, RoomType.ICU);
-            Room room2 = new Room(203, RoomType.General);
+            // Assign doctors to clinics and generate appointment slots (9 AM - 12 PM)
+            doctor1.AssignToClinic(cardiologyClinic, new DateTime(2024, 10, 5), TimeSpan.FromHours(9)); // Expected: Appointments generated for 9 AM, 10 AM, 11 AM
+            doctor2.AssignToClinic(neurologyClinic, new DateTime(2024, 10, 6), TimeSpan.FromHours(9));  // Expected: Appointments generated for 9 AM, 10 AM, 11 AM
 
-            patient1.AssignRoom(room1);
-            patient2.AssignRoom(room2);
+            cardiologyClinic.AddRoom(room1); // Expected: Room 101 added to Cardiology Clinic
+            neurologyClinic.AddRoom(room2);  // Expected: Room 102 added to Neurology Clinic
 
-            // Display room details 
-            Console.WriteLine($"Room {room1.RoomNumber} is occupied: {room1.IsOccupied}");
-            Console.WriteLine($"Room {room2.RoomNumber} is occupied: {room2.IsOccupied}");
+            // Create patients
+            InPatient inpatient1 = new InPatient(101, "Jane Doe", 30, Gender.Female, "Cardiac Arrest", doctor1, DateTime.Now);
 
-            // Test Case 3: Schedule appointments 
-            Console.WriteLine("\n===== Test Case 3: Schedule Appointments =====");
-            Appointment appointment1 = new Appointment(patient1, doctor1, new DateTime(2024, 10, 5, 9, 30, 0));
-            appointment1.ScheduleAppointment(new DateTime(2024, 10, 5, 9, 30, 0));
-            appointment1.GetAppointmentDetails();
 
-            Appointment appointment2 = new Appointment(patient2, doctor2, new DateTime(2024, 10, 6, 11, 0, 0));
-            appointment2.ScheduleAppointment(new DateTime(2024, 10, 6, 11, 0, 0));
-            appointment2.GetAppointmentDetails();
+            OutPatient outpatient1 = new OutPatient(102, "Mark Doe", 28, Gender.Male, "Mirgaine", doctor1, neurologyClinic);
 
-            // Test Case 4: Discharge patients 
-            Console.WriteLine("\n===== Test Case 4: Discharge Patients =====");
-            patient1.Discharge();
-            Console.WriteLine($"Patient {patient1.Name} has been discharged. Room { room1.RoomNumber} is now occupied: { room1.IsOccupied}"); 
+            // Assign room to in-patient
+            inpatient1.AssignRoom(room1); // Expected: Room 101 becomes occupied
 
-            // Test Case 5: Display doctor-patient details 
-            Console.WriteLine("\n===== Test Case 5: Display Doctor-Patient Details =====");
-            doctor1.DisplayInfo();
-            doctor2.DisplayInfo();
+            // Book an appointment for out-patient in Cardiology Clinic
+            outpatient1.BookAppointment(cardiologyClinic, new DateTime(2024, 10, 5), TimeSpan.FromHours(10)); // Expected: Appointment at 10 AM booked
+
+            // View doctor's assigned clinics
+            doctor1.DisplayAssignedClinics(); // Expected: Cardiology Clinic is displayed
+
+            // View available appointments in Cardiology Clinic
+            cardiologyClinic.DisplayAvailableAppointments();
+            // Expected: Show available slots for Dr. John Smith at 9 AM, 11 AM (10 AM is booked)
+
+            // Discharge in-patient
+            inpatient1.Discharge(); // Expected: Room 101 becomes available, patient discharged
+
+            // Book another appointment for the same out-patient in Cardiology Clinic
+            outpatient1.BookAppointment(cardiologyClinic, new DateTime(2024, 10, 5), TimeSpan.FromHours(11)); // Expected: Appointment at 11 AM booked
+
+            // Try booking a time outside available slots
+            outpatient1.BookAppointment(cardiologyClinic, new DateTime(2024, 10, 5), TimeSpan.FromHours(12)); // Expected: No available appointments for this time
+
+            // Cancel an appointment
+            cardiologyClinic.BookAppointment(outpatient1, doctor1, new DateTime(2024, 10, 5), TimeSpan.FromHours(10)); // Expected: Appointment cancellation message for 10 AM
+
+            // View available appointments after booking and cancellation
+            cardiologyClinic.DisplayAvailableAppointments();
+            // Expected: 10 AM slot available again, 9 AM and 11 AM booked
         }
     }
+
 }
+

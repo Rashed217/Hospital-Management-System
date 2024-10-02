@@ -34,8 +34,6 @@ namespace Hospital_MS
             PatientsList.Add(patient);
         }
 
-
-        // 
         public void AssignRoomToPatient(Patient patient, Room room) // Determines the Patient and the Room
         {
             if (!room.IsOccupied) // Checks if room is already occupied
@@ -50,7 +48,7 @@ namespace Hospital_MS
         }
 
 
-        // This method displays information about the patients assigned to a specific doctor
+        // Display information about the patients assigned to a specific doctor
         public void GetDoctorPatient(Doctor doctor) // Determines the Doctor
         {
             Console.WriteLine($"Patient assigned to Dr. {doctor.Name}:");

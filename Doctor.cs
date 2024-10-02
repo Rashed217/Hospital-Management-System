@@ -15,16 +15,15 @@ namespace Hospital_MS
 
 
         // // Passing attributes from base class (Person), and adding new attributes
-        public Doctor(int doctorID, string name, int age, Gender gender, string specialization, Clinic clinic) : base(name, age, gender)
+        public Doctor(int doctorID, string name, int age, Gender gender, Specialization specialization, Clinics clinic) : base(name, age, gender)
         {
-            DoctorID = doctorID;
-            Specialization = specialization;
         }
 
+        // Determines which clinic the doctor will be assigned, which day and the duration of the assignment.
         public void AssignToClinic(Clinic clinic, DateTime day, TimeSpan period)
         {
-            AssignedClinics.Add(clinic);
-            clinic.AddAvailableAppointments(this, day, period);
+            AssignedClinics.Add(clinic); // Adds the clinic to the set of the clinics
+            clinic.AddAvailableAppointments(this, day, period); // Adds available appointments for the doctor on the specified day and period.
         }
 
         public void DisplayAssignedClinics()

@@ -12,6 +12,13 @@ namespace Hospital_MS
         Neurology,
         Dermatology
     }
+
+    public enum Clinics
+    {
+        Cardiology,
+        Neurology,
+        Dermatology
+    }
     public class Clinic
     {
         public int ClinicID { get; set; }

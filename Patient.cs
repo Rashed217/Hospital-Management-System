@@ -8,6 +8,7 @@ namespace Hospital_MS
 {
     public class Patient : Person  // Inheriting attributes of base class (Person)
     {
+        // Adding Attributes for Patient class
         public int PatientID { get; set; } // ID to identify the patients
         public string Ailment {  get; set; } // Property to describe patient medical condition
         public Doctor AssignedDoctor { get; set; } // Holds a reference to the doctor assigned to the patient

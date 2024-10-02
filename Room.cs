@@ -11,7 +11,7 @@ namespace Hospital_MS
         General,
         ICU,
         OperationTheater,
-        IRP, // In Patient Room
+        IPR, // In Patient Room
         OPR  // Out Patient Room
     }
 
@@ -41,7 +41,7 @@ namespace Hospital_MS
 
         public void DisplayRoomInfo()
         {
-            Console.WriteLine($"Room Number: {RoomNumber}, Is Occupied: {IsOccupied}, Type: {Type}");
+            Console.WriteLine($"Room Number: {RoomNumber}, Is Occupied: {IsOccupied}, Type: {RoomType}");
         }
     }
 }

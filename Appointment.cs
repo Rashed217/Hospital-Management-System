@@ -33,7 +33,7 @@ namespace Hospital_MS
 
         public void GetAppointmentDetails() // Prints appointment's details
         {
-            Console.WriteLine($"Appointment for Patient: {Patient.Name}, Doctor: {Doctor.Name}, Date: {AppointmentDate}");
+            Console.WriteLine($"Appointment for Patient: {Patient.Name}, Doctor: {Doctor.Name}, Date: {AppointmentDate}, Time: {AppointmentTime}");
         }
     }
 }
