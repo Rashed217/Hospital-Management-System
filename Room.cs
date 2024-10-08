@@ -13,6 +13,11 @@ namespace Hospital_MS
         bool CheckOccupancy(); // Method to check if the room is occupied
     }
 
+    public interface IDisplayInfo
+    {
+        void DisplayInfo();
+    }
+
     public enum RoomType // An enumeration that defines a set of named constants.
     {
         General,
@@ -22,7 +27,7 @@ namespace Hospital_MS
         OPR  // Out Patient Room
     }
 
-    public class Room : IRoomManagement // Room class Implementing IRoomManagement
+    public class Room : IRoomManagement, IDisplayInfo // Room class Implementing IRoomManagement and IDisplayInfo interfaces
     {
         public int RoomNumber {  get; set; } // Holds the unique identifier for the room
         public RoomType RoomType { get; set; } // A property of type RoomType from enumeration
@@ -51,7 +56,7 @@ namespace Hospital_MS
             return IsOccupied;
         }
 
-        public void DisplayRoomInfo()
+        public void DisplayInfo()
         {
             Console.WriteLine($"Room Number: {RoomNumber}, Is Occupied: {IsOccupied}, Type: {RoomType}");
         }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Hospital_MS
 {
-    public class Appointment
+    public class Appointment : IDisplayInfo
     {
         public Patient Patient { get; set; } // Holds an instance of the Patient class 
 
@@ -31,7 +31,7 @@ namespace Hospital_MS
             IsBooked = false;
         }
 
-        public void GetAppointmentDetails() // Prints appointment's details
+        public void DisplayInfo() // Prints appointment's details
         {
             Console.WriteLine($"Appointment for Patient: {Patient.Name}, Doctor: {Doctor.Name}, Date: {AppointmentDate}, Time: {AppointmentTime}");
         }

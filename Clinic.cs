@@ -8,9 +8,12 @@ namespace Hospital_MS
 {
     public enum Specialization
     {
-        Cardiology,
-        Neurology,
-        Dermatology
+        Cardiology, // For Doctors
+        Neurology, // For Doctors
+        Dermatology, // For Doctors
+        General, // For Nurses
+        Pediatrics, // For Nurses
+        Surgery // For Nurses
     }
 
     public enum Clinics
@@ -19,7 +22,7 @@ namespace Hospital_MS
         Neurology,
         Dermatology
     }
-    public class Clinic
+    public class Clinic : IDisplayInfo
     {
         public int ClinicID { get; set; }
         public string ClinicName { get; set; }
@@ -85,7 +88,7 @@ namespace Hospital_MS
             }
         }
 
-        public void DisplayAvailableAppointments()
+        public void DisplayInfo()
         {
             foreach (var doctor in AvailableAppointments.Keys)
             {
