@@ -6,6 +6,13 @@ using System.Threading.Tasks;
 
 namespace Hospital_MS
 {
+    public interface IRoomManagement
+    {
+        void OccupyRoom(); // Method to mark the room as occupied
+        void VacateRoom(); // Method to mark the room as available
+        bool CheckOccupancy(); // Method to check if the room is occupied
+    }
+
     public enum RoomType // An enumeration that defines a set of named constants.
     {
         General,
@@ -15,7 +22,7 @@ namespace Hospital_MS
         OPR  // Out Patient Room
     }
 
-    public class Room
+    public class Room : IRoomManagement // Room class Implementing IRoomManagement
     {
         public int RoomNumber {  get; set; } // Holds the unique identifier for the room
         public RoomType RoomType { get; set; } // A property of type RoomType from enumeration
@@ -37,6 +44,11 @@ namespace Hospital_MS
         public void VacateRoom() // Sets the room status to not occupied
         {
             IsOccupied = false;
+        }
+
+        public bool CheckOccupancy()  // Return the Occupancy status
+        {
+            return IsOccupied;
         }
 
         public void DisplayRoomInfo()
